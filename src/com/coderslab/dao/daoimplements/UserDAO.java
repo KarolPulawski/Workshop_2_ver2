@@ -54,16 +54,16 @@ public class UserDAO implements UserDAOInterface {
     }
 
     @Override
-    public void delete(User userAdd) {
+    public void delete(User userDelete) {
         //DELETE na bazie i zamienia id na 0
-        if (userAdd.getId() != 0) {
+        if (userDelete.getId() != 0) {
             try {
                 String sql = "DELETE FROM users WHERE id=?";
                 PreparedStatement preparedStatement;
                 preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
-                preparedStatement.setInt(1, userAdd.getId());
+                preparedStatement.setInt(1, userDelete.getId());
                 preparedStatement.executeUpdate();
-                userAdd.setId(0);
+                userDelete.setId(0);
             } catch (SQLException e) { e.printStackTrace();}
         }
     }

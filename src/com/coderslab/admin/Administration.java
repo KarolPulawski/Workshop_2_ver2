@@ -38,9 +38,9 @@ public class Administration {
 //                case 2:
 //                    ExerciseAdministration.processAction();
 //                    break;
-//                case 3:
-//                    GroupAdministration.processAction();
-//                    break;
+                case 3:
+                    GroupAdministration.processAction();
+                    break;
 //                case 4:
 //                    SolutionAdministration.processAction();
 //                    break;
