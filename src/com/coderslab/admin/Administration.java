@@ -41,9 +41,9 @@ public class Administration {
                 case 3:
                     GroupAdministration.processAction();
                     break;
-//                case 4:
-//                    SolutionAdministration.processAction();
-//                    break;
+                case 4:
+                    SolutionAdministration.processAction();
+                    break;
                 default:
                     System.out.println("Please type correct position's number.");
             }
