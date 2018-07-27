@@ -59,7 +59,7 @@ public class Administration {
             System.out.println("----------------------------------------------------------------------");
             System.out.println("------Please type name of specific action for user: ( " + user_id_from_args+" ):-----------");
             System.out.println("----------------------------------------------------------------------");
-//            SolutionUpdateAdministration.processAction(user_id_from_args);
+            SolutionUpdateAdministration.processAction(user_id_from_args);
         }
         System.out.println("App is closing...");
     }
