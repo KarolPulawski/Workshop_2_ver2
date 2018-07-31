@@ -63,9 +63,9 @@ public class SolutionUpdateAdministration {
         boolean action = true;
         while (action) {
             System.out.println("--------------------------------------------------------------------------------------");
-            System.out.println(" * add solution");
-            System.out.println(" * view solutions");
-            System.out.println(" * quit");
+            System.out.println(" * (add) add solution");
+            System.out.println(" * (view) view solutions");
+            System.out.println(" * (quit) quit app");
             System.out.println("--------------------------------------------------------------------------------------");
             String choice = getStringFromUser("Please type one out of above actions: ");
 
@@ -94,7 +94,7 @@ public class SolutionUpdateAdministration {
                 case "view":
                     ArrayList<Solution> solutions = SolutionDAOInterface.loadAllByUserId(idFromConsole);
                     System.out.println("-------------------Solutions list (user id: " + idFromConsole + ")---------------------");
-                    System.out.printf("%-5s %-20s %-20s %-60s \n","id", "date of create", "date of update");
+                    System.out.printf("%-5s %-20s %-20s %-60s \n","id", "date of create", "date of update", "description");
                     System.out.println("---------------------------------------------------------------------------------------");
                     for(Solution solution : solutions) {
                         int solution_id = solution.getId();
