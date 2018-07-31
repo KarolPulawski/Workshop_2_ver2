@@ -3,6 +3,7 @@ package com.coderslab.admin;
 import com.coderslab.dao.daoimplements.UserDAO;
 import com.coderslab.dao.daointerfaces.UserDAOInterface;
 import com.coderslab.model.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,7 +60,10 @@ public class UserAdministration {
                 case "add":
                     User userAdd = new User();
                     userAdd.setUsername(getStringFromUser("Please type username: "));
-                    userAdd.setPassword(getStringFromUser("Please type password: "));
+
+                    String passToEncryptAdd = getStringFromUser("Please type password: ");
+                    userAdd.setPassword(BCrypt.hashpw(passToEncryptAdd, BCrypt.gensalt()));
+
                     userAdd.setEmail(getStringFromUser("Please email: "));
                     userAdd.setUser_group_id(getIntFromUser("Please group_id: "));
 
@@ -72,7 +76,8 @@ public class UserAdministration {
                         System.out.println("User id does not exist and can not be midified!");
                     } else {
                         userEdit.setUsername(getStringFromUser("Please type username: "));
-                        userEdit.setPassword(getStringFromUser("Please type password: "));
+                        String passToEncryptEdit = getStringFromUser("Please type password: ");
+                        userEdit.setPassword(BCrypt.hashpw(passToEncryptEdit, BCrypt.gensalt()));
                         userEdit.setEmail(getStringFromUser("Please email: "));
                         userEdit.setUser_group_id(getIntFromUser("Please group_id: "));
 
