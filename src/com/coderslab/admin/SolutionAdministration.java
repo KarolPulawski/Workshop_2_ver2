@@ -62,12 +62,27 @@ public class SolutionAdministration {
                     int user_id_view = getIntFromUser("Please type user's id to show his all solutions: ");
                     ArrayList<Solution> solutions = SolutionDAOInterface.loadAllByUserId(user_id_view);
                     System.out.println("-------------------Solutions list (user id: " + user_id_view + ")---------------------");
-                    System.out.printf("%-5s %-20s \n","id", "date of create");
+                    System.out.printf("%-5s %-20s %-20s %-80s \n","id", "date of create", "date of update", "description");
                     System.out.println("--------------------------------------------------------------------------------------");
                     for(Solution solution : solutions) {
                         int solution_id = solution.getId();
                         java.sql.Date solution_created = solution.getCreated();
-                        System.out.printf("%-5s %-20s \n",solution_id, solution_created.toString());
+                        java.sql.Date solution_updated = null;
+                        String solution_updated_string = null;
+                        String description = null;
+                        try {
+                            solution_updated = solution.getUpdated();
+                            description = solution.getDescription();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if(solution_updated == null) {
+                            solution_updated_string = "-----";
+                        }
+                        if(description == null) {
+                            description = "-----";
+                        }
+                        System.out.printf("%-5s %-20s %-20s %-80s \n",solution_id, solution_created.toString(), solution_updated_string, description);
                     }
                     System.out.println("--------------------------------------------------------------------------------------");
                     break;

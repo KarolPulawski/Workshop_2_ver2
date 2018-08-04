@@ -32,16 +32,15 @@ public class SolutionDAO implements SolutionDAOInterface {
         } else {
             // update
             try {
-                String sql = "UPDATE solution SET created = ?, updated = ?, description = ?, exercise_id = ?, " +
-                        "users_id = ? WHERE id = ?";
+                String sql = "UPDATE solution SET updated = ?, description = ? WHERE id = ?";
                 PreparedStatement preparedStatement;
                 preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
-                preparedStatement.setDate(1, solutionAdd.getCreated());
-                preparedStatement.setDate(2, solutionAdd.getUpdated());
-                preparedStatement.setString(3, solutionAdd.getDescription());
-                preparedStatement.setInt(4, solutionAdd.getExercise_id());
-                preparedStatement.setInt(5, solutionAdd.getUsers_id());
-                preparedStatement.setInt(6, solutionAdd.getId());
+//                preparedStatement.setDate(1, solutionAdd.getCreated());
+                preparedStatement.setDate(1, solutionAdd.getUpdated());
+                preparedStatement.setString(2, solutionAdd.getDescription());
+//                preparedStatement.setInt(4, solutionAdd.getExercise_id());
+//                preparedStatement.setInt(5, solutionAdd.getUsers_id());
+                preparedStatement.setInt(3, solutionAdd.getId());
                 preparedStatement.executeUpdate();
             } catch (SQLException e) { e.printStackTrace(); }
         }

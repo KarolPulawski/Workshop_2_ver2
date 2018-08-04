@@ -100,8 +100,27 @@ public class SolutionUpdateAdministration {
                         int solution_id = solution.getId();
                         java.sql.Date solution_created = solution.getCreated();
                         java.sql.Date solution_updated = solution.getUpdated();
-                        String solution_description = solution.getDescription();
-                        System.out.printf("%-5s %-20s %-20s %-60s \n",solution_id, solution_created.toString(), solution_updated.toString(), solution_description);
+                        String solution_description = null;
+
+                        String solution_created_string = null;
+                        String solution_updated_string = null;
+                        try {
+                            solution_created_string = solution_created.toString();
+                            solution_updated_string = solution_updated.toString();
+                            solution_description = solution.getDescription();
+                        } catch (Exception e) {
+                            //e.printStackTrace();
+                        }
+                        if(solution_created_string == null || solution_created_string.equals("")) {
+                            solution_created_string = "empty";
+                        }
+                        if(solution_updated_string == null || solution_updated_string.equals("")) {
+                            solution_updated_string = "empty";
+                        }
+                        if(solution_description == null) {
+                            solution_description = "empty";
+                        }
+                        System.out.printf("%-5s %-20s %-20s %-60s \n",solution_id, solution_created_string, solution_updated_string, solution_description);
                     }
                     System.out.println("--------------------------------------------------------------------------------------");
                     break;
