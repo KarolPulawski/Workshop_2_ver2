@@ -97,30 +97,34 @@ public class SolutionUpdateAdministration {
                     System.out.printf("%-5s %-20s %-20s %-60s \n","id", "date of create", "date of update", "description");
                     System.out.println("---------------------------------------------------------------------------------------");
                     for(Solution solution : solutions) {
-                        int solution_id = solution.getId();
-                        java.sql.Date solution_created = solution.getCreated();
-                        java.sql.Date solution_updated = solution.getUpdated();
                         String solution_description = null;
+                        solution_description = solution.getDescription();
 
-                        String solution_created_string = null;
-                        String solution_updated_string = null;
-                        try {
-                            solution_created_string = solution_created.toString();
-                            solution_updated_string = solution_updated.toString();
-                            solution_description = solution.getDescription();
-                        } catch (Exception e) {
-                            //e.printStackTrace();
-                        }
-                        if(solution_created_string == null || solution_created_string.equals("")) {
-                            solution_created_string = "empty";
-                        }
-                        if(solution_updated_string == null || solution_updated_string.equals("")) {
-                            solution_updated_string = "empty";
-                        }
                         if(solution_description == null) {
                             solution_description = "empty";
+                            int solution_id = solution.getId();
+                            java.sql.Date solution_created = solution.getCreated();
+                            java.sql.Date solution_updated = solution.getUpdated();
+
+
+                            String solution_created_string = null;
+                            String solution_updated_string = null;
+                            try {
+                                solution_created_string = solution_created.toString();
+                                solution_updated_string = solution_updated.toString();
+
+                            } catch (Exception e) {
+                                //e.printStackTrace();
+                            }
+                            if(solution_created_string == null || solution_created_string.equals("")) {
+                                solution_created_string = "empty";
+                            }
+                            if(solution_updated_string == null || solution_updated_string.equals("")) {
+                                solution_updated_string = "empty";
+                            }
+
+                            System.out.printf("%-5s %-20s %-20s %-60s \n",solution_id, solution_created_string, solution_updated_string, solution_description);
                         }
-                        System.out.printf("%-5s %-20s %-20s %-60s \n",solution_id, solution_created_string, solution_updated_string, solution_description);
                     }
                     System.out.println("--------------------------------------------------------------------------------------");
                     break;
