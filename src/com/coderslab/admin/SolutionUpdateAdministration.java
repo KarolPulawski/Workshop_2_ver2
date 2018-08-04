@@ -39,7 +39,7 @@ public class SolutionUpdateAdministration {
                     "SELECT exercise.id, title, created FROM " +
                     "exercise " +
                     "LEFT JOIN solution ON exercise.id = solution.exercise_id " +
-                    "WHERE users_id = ? AND solution.description IS NULL";
+                    "WHERE solution.users_id = ? AND solution.description IS NULL";
             PreparedStatement preparedStatement;
             preparedStatement = DbManager.getInstance().getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, idFromConsole);
@@ -76,8 +76,15 @@ public class SolutionUpdateAdministration {
                     System.out.println("--------------------------------------------------------------------------------------");
                     int choice_exercise = getIntFromUser("Please type number of exercise you want to add solution: ");
 
-                    ArrayList<Solution> solutionsToUpdate = SolutionDAOInterface.loadAllByExerciseId(choice_exercise);
-                    Solution firstSolutionToUpdate = solutionsToUpdate.get(0);
+                    ArrayList<Solution> solutionsToUpdate = SolutionDAOInterface.loadByUserIdByExerciseId(idFromConsole, choice_exercise);
+
+                    Solution firstSolutionToUpdate = null;
+                    for(Solution solution : solutionsToUpdate) {
+                        if(solution.getUsers_id() == idFromConsole) {
+                            firstSolutionToUpdate = solution;
+                            break;
+                        }
+                    }
 
                     firstSolutionToUpdate.setDescription(getStringFromUser("Please type your solution: "));
 
